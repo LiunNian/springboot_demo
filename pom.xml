@@ -8,6 +8,13 @@
     <artifactId>springboot_demo</artifactId>
     <version>1.0.0</version>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <java.version>8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -47,6 +54,49 @@
         </dependency>
 
     </dependencies>
+
+
+    <build>
+        <finalName>springboot_demo</finalName>
+        <plugins>
+            <plugin>
+                <!--配置maven打包环境，为JDK1.8-->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.18.1</version>
+                <configuration>
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+            <!--Spring Boot项目打包插件-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.0.1.RELEASE</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <addResources>true</addResources>
+                    <mainClass>com.demo.ApplicationMain</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     
 </project>
