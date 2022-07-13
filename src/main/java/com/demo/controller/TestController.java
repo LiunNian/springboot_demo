@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TestController {
 
-    @GetMapping("/")
+    @GetMapping(value = "/",produces = "text/plan")
     public String get(){
         return "这是第一个";
     }
+
+
 
 }
